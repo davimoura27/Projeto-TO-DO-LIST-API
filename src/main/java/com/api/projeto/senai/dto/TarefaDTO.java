@@ -2,7 +2,7 @@ package com.api.projeto.senai.dto;
 
 import java.time.LocalDateTime;
 
-import jakarta.validation.constraints.Email;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -21,7 +21,7 @@ public class TarefaDTO {
 
     private boolean concluida;
     
-    @Email
+    
     private String email;
 
 }

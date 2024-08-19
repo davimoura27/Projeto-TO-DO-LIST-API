@@ -31,14 +31,17 @@ public class TarefaService {
         return modelMapper.map(tarefaDTO, Tarefa.class);
     }
 
-    private void sendEmailNotification(Tarefa tarefaSalva, String subject, String text) {
-      emailService.sendEmail(tarefaSalva.getEmail(), text, subject);
-        // String subject = "Tarefa Criada com Sucesso!";
-        // String text = "Tarefa criada com sucesso: " + tarefaSalva.getNomeTarefa();
-        // emailService.sendEmail(tarefaSalva.getEmail(), text, subject);  
+    private void sendEmailNotification(Tarefa tarefaNova, String subject, String text) {
+      emailService.sendEmail(tarefaNova.getEmail(), text, subject);
+         
     }
 
     public TarefaDTO criarTarefa(TarefaDTO tarefaDTO) {
+        List<Tarefa> tarefaExistente = tarefaRepository.findByEmail(tarefaDTO.getEmail()); 
+        if (!tarefaExistente.isEmpty()) {
+            throw new InvalidInputException("Já existe uma tarefa com o e-mail: " + tarefaDTO.getEmail());
+        }
+
         Tarefa tarefa = convertToEntity(tarefaDTO);
         Tarefa tarefaSalva = tarefaRepository.save(tarefa);
 

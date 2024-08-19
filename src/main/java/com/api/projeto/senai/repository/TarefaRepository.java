@@ -14,5 +14,6 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
     Tarefa save(@Valid TarefaDTO tarefa);
 
     List<Tarefa> findByTag(String tag);
-
+    
+    List<Tarefa> findByEmail(String email);
 }

@@ -20,7 +20,8 @@ public class Tarefa {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column @NotBlank
+    @Column
+    @NotBlank
     private String nomeTarefa;
 
     @Column
@@ -45,7 +46,7 @@ public class Tarefa {
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
     
-    @Column(unique = true)
+    @Column
     private String email;
     
 
